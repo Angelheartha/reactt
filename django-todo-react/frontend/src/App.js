@@ -70,6 +70,18 @@ class App extends Component {
     return this.setState({ viewCompleted: false });
   };
 
+
+  howtodo = () => {
+    return (
+      <div className="howtoplay">
+         you need to write
+      </div>
+    );
+  };
+
+
+
+
   renderTabList = () => {
     return (
       <div className="nav nav-tabs">
@@ -129,6 +141,26 @@ class App extends Component {
   render() {
     return (
       <main className="container">
+      <div className="nav-container">
+         <button
+                  className="navi white How btn btn-primary"
+                  onClick={this.howtodo}
+                >
+                  How to use
+         </button>
+         <button
+                  className="navi What btn btn-primary"
+                  onClick={this.createItem}
+                >
+                  What to write
+         </button>
+         <button
+                  className="navi contact btn btn-primary"
+                  onClick={this.createItem}
+                >
+                  Contact
+         </button>
+      </div>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
@@ -138,7 +170,7 @@ class App extends Component {
                   className="btn btn-primary"
                   onClick={this.createItem}
                 >
-                  Add task
+                  Add
                 </button>
               </div>
               {this.renderTabList()}

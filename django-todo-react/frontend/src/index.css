@@ -34,3 +34,21 @@ body {
     .container .text-center{
       color:black;
     }
+
+
+   .nav-container{
+   background-color:blue;
+   width:100%;
+   height:100%;
+   display:flex;
+   justify-content:flex-start;
+   }
+
+   .navi{
+   color:white;
+   background-color:red;
+   }
+
+
+
+
