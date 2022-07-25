@@ -1,20 +1,28 @@
-import React, { Component } from "react";
+import React, { Component, useState, useRef } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 
+
+
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       viewCompleted: false,
       todoList: [],
       modal: false,
+      how:"",
+      what:"",
       activeItem: {
         title: "",
         description: "",
         completed: false,
       },
+
     };
+    this.howtodo = this.howtodo.bind(this);
+    this.whattodo = this.whattodo.bind(this);
   }
 
   componentDidMount() {
@@ -69,16 +77,6 @@ class App extends Component {
 
     return this.setState({ viewCompleted: false });
   };
-
-
-  howtodo = () => {
-    return (
-      <div className="howtoplay">
-         you need to write
-      </div>
-    );
-  };
-
 
 
 
@@ -138,6 +136,7 @@ class App extends Component {
     ));
   };
 
+
   render() {
     return (
       <main className="container">
@@ -148,19 +147,23 @@ class App extends Component {
                 >
                   How to use
          </button>
+
          <button
                   className="navi What btn btn-primary"
-                  onClick={this.createItem}
+                  onClick={this.whattodo}
                 >
                   What to write
          </button>
+
          <button
                   className="navi contact btn btn-primary"
-                  onClick={this.createItem}
+                  onClick={this.whattodo}
                 >
                   Contact
          </button>
       </div>
+      <p className="howtitle">{this.state.how}</p>
+      <p className="howtitle">{this.state.what}</p>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
@@ -187,9 +190,32 @@ class App extends Component {
             onSave={this.handleSubmit}
           />
         ) : null}
+
+
+
+
       </main>
     );
   }
+   howtodo(){
+   this.setState({how:"You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster"});
+   }
+
+   whattodo(){
+   this.setState({how:"You can write any recommendations for language studies on the Description. anything is ok"});
+
+   }
+
+   contact = () => {
+    const meme = { name: "", address: ""};
+    this.setState({ contactt: meme, Contact:!this.state.Contact });
+  };
+
+
+
+
+
 }
+
 
 export default App;
