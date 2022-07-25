@@ -4,8 +4,6 @@ import axios from "axios";
 
 
 
-
-
 class App extends Component {
 
   constructor(props) {
@@ -114,21 +112,16 @@ class App extends Component {
 
 
 
-  const ControlledForm = () => {
-    const [name, setName] = useState('');
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    };
-    const handleSubmit = () => {
-        console.log(name);
-    }
+  function Act(){
 
-    return (
+  return(
+      <div id="modal" className="modal">
         <div>
-            <input type="text" value={name} onChange={handleNameChange} />
-            <button onClick={handleSubmit} >Submit</button>
+          <p>モーダル</p>
+          <button>閉じるボタン</button>
         </div>
-    );
+      </div>
+     )
   }
 
 
@@ -210,6 +203,7 @@ class App extends Component {
 
       <p className="howtitle">{this.state.how}</p>
       <p className="howtitle">{this.state.what}</p>
+      <Act/>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
