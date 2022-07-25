@@ -1,6 +1,8 @@
-import React, { Component, useState, useRef } from "react";
+import React, { Component} from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
+import Contact from "./components/Contact";
+
 
 
 
@@ -78,6 +80,16 @@ class App extends Component {
     return this.setState({ viewCompleted: false });
   };
 
+  Modal= () => {
+  return (
+    <div id="overlay">
+      <div id="content">
+        <p>これがモーダルウィンドウです。</p>
+        <p><button>close</button></p>
+      </div>
+    </div>
+  )
+  }
 
 
   renderTabList = () => {
@@ -162,8 +174,10 @@ class App extends Component {
                   Contact
          </button>
       </div>
+
       <p className="howtitle">{this.state.how}</p>
       <p className="howtitle">{this.state.what}</p>
+      <Modal/>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
@@ -183,7 +197,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        {this.state.modal ? (
+           {this.state.modal ? (
           <Modal
             activeItem={this.state.activeItem}
             toggle={this.toggle}
