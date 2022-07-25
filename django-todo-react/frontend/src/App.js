@@ -1,7 +1,7 @@
-import React, { Component} from "react";
+import React, { Component,useState} from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
-import Contact from "./components/Contact";
+
 
 
 
@@ -21,7 +21,11 @@ class App extends Component {
         description: "",
         completed: false,
       },
-
+      isSubmitted: false,
+      email: "sample@gmail.com",
+      hasEmailError: false,
+      content: "お問い合わせ内容",
+      hasContactError: false,
     };
     this.howtodo = this.howtodo.bind(this);
     this.whattodo = this.whattodo.bind(this);
@@ -80,16 +84,7 @@ class App extends Component {
     return this.setState({ viewCompleted: false });
   };
 
-  Modal= () => {
-  return (
-    <div id="overlay">
-      <div id="content">
-        <p>これがモーダルウィンドウです。</p>
-        <p><button>close</button></p>
-      </div>
-    </div>
-  )
-  }
+
 
 
   renderTabList = () => {
@@ -116,6 +111,44 @@ class App extends Component {
     const newItems = this.state.todoList.filter(
       (item) => item.completed === viewCompleted
     );
+
+
+
+  const ControlledForm = () => {
+    const [name, setName] = useState('');
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
+    const handleSubmit = () => {
+        console.log(name);
+    }
+
+    return (
+        <div>
+            <input type="text" value={name} onChange={handleNameChange} />
+            <button onClick={handleSubmit} >Submit</button>
+        </div>
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return newItems.map((item) => (
       <li
@@ -169,7 +202,7 @@ class App extends Component {
 
          <button
                   className="navi contact btn btn-primary"
-                  onClick={this.whattodo}
+                  onClick={this.ControlledForm}
                 >
                   Contact
          </button>
@@ -177,7 +210,6 @@ class App extends Component {
 
       <p className="howtitle">{this.state.how}</p>
       <p className="howtitle">{this.state.what}</p>
-      <Modal/>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
@@ -217,13 +249,11 @@ class App extends Component {
 
    whattodo(){
    this.setState({how:"You can write any recommendations for language studies on the Description. anything is ok"});
-
    }
 
-   contact = () => {
-    const meme = { name: "", address: ""};
-    this.setState({ contactt: meme, Contact:!this.state.Contact });
-  };
+
+
+
 
 
 
