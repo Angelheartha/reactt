@@ -3,6 +3,19 @@ import Modal from "./components/Modal";
 import axios from "axios";
 
 
+function Act(){
+
+  return(
+      <div id="modal" className="modal">
+        <div>
+          <p>モーダル</p>
+          <button>閉じるボタン</button>
+        </div>
+      </div>
+     )
+  }
+
+
 
 class App extends Component {
 
@@ -112,17 +125,7 @@ class App extends Component {
 
 
 
-  function Act(){
 
-  return(
-      <div id="modal" className="modal">
-        <div>
-          <p>モーダル</p>
-          <button>閉じるボタン</button>
-        </div>
-      </div>
-     )
-  }
 
 
 
@@ -200,10 +203,9 @@ class App extends Component {
                   Contact
          </button>
       </div>
-
+      <Act/>
       <p className="howtitle">{this.state.how}</p>
       <p className="howtitle">{this.state.what}</p>
-      <Act/>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
