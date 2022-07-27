@@ -3,23 +3,43 @@ import Modal from "./components/Modal";
 import axios from "axios";
 
 
+
+
 function Act(){
+const[isModalOpen,setIsModalOpen]=useState(false)
+
 
   return(
-      <div id="modal" className="modal">
+      <div id="modal" className="modall">
         <div>
           <p>モーダル</p>
           <button>閉じるボタン</button>
         </div>
       </div>
      )
+}
+
+
+function closeModal(){
+
+    setIsModalOpen(false)
+  }
+
+
+function openModal(){
+
+    setIsModalOpen(true)
   }
 
 
 
-class App extends Component {
 
-  constructor(props) {
+
+class App extends Component{
+
+
+
+  constructor(props){
     super(props);
     this.state = {
       viewCompleted: false,
@@ -41,6 +61,9 @@ class App extends Component {
     this.howtodo = this.howtodo.bind(this);
     this.whattodo = this.whattodo.bind(this);
   }
+
+
+
 
   componentDidMount() {
     this.refreshList();
@@ -130,22 +153,6 @@ class App extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return newItems.map((item) => (
       <li
         key={item.id}
@@ -198,10 +205,11 @@ class App extends Component {
 
          <button
                   className="navi contact btn btn-primary"
-                  onClick={this.ControlledForm}
+                  onClick={()=>{openModal()}}
                 >
                   Contact
          </button>
+         {isModalOpen? <Modal onClick={()=>{closeModal()}}/> :""}
       </div>
       <Act/>
       <p className="howtitle">{this.state.how}</p>
@@ -259,3 +267,5 @@ class App extends Component {
 
 
 export default App;
+
+
