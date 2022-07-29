@@ -6,7 +6,6 @@ import axios from "axios";
 
 
 function Act(){
-const[isModalOpen,setIsModalOpen]=useState(false)
 
 
   return(
@@ -20,29 +19,23 @@ const[isModalOpen,setIsModalOpen]=useState(false)
 }
 
 
-function closeModal(){
 
-    setIsModalOpen(false)
-  }
-
-
-function openModal(){
-
-    setIsModalOpen(true)
-  }
 
 
 
 
 
 class App extends Component{
-
+///const[isModalOpen,setIsModalOpen]=useState(false)
 
 
   constructor(props){
     super(props);
     this.state = {
       viewCompleted: false,
+      isModalOpen:false,
+      setIsModalOpen:false,
+      closeModal:false,
       todoList: [],
       modal: false,
       how:"",
@@ -60,6 +53,18 @@ class App extends Component{
     };
     this.howtodo = this.howtodo.bind(this);
     this.whattodo = this.whattodo.bind(this);
+  }
+
+
+  closeModal(){
+
+    this.setIsModalOpen(false);
+  }
+
+
+  openModal(){
+
+    this.setIsModalOpen(true);
   }
 
 
@@ -205,11 +210,11 @@ class App extends Component{
 
          <button
                   className="navi contact btn btn-primary"
-                  onClick={()=>{openModal()}}
+                  onClick={()=>{this.openModal()}}
                 >
                   Contact
          </button>
-         {isModalOpen? <Modal onClick={()=>{closeModal()}}/> :""}
+         {this.isModalOpen? <Modal onClick={()=>this.closeModal()}/> :""}
       </div>
       <Act/>
       <p className="howtitle">{this.state.how}</p>
