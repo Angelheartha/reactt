@@ -5,18 +5,21 @@ import axios from "axios";
 
 
 
-function Act(){
+function Act(props){
 
 
   return(
       <div id="modal" className="modall">
         <div>
           <p>モーダル</p>
-          <button>閉じるボタン</button>
+          <button onClick={props.onClick}>閉じるボタン</button>
         </div>
       </div>
      )
 }
+
+
+
 
 
 
@@ -214,7 +217,7 @@ class App extends Component{
                 >
                   Contact
          </button>
-         {this.isModalOpen? <Modal onClick={()=>this.closeModal()}/> :""}
+          {this.isModalOpen? <Modal onClick={()=>{this.closeModal()}}/> :""}
       </div>
       <Act/>
       <p className="howtitle">{this.state.how}</p>
