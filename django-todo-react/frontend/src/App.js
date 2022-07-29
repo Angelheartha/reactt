@@ -211,6 +211,7 @@ class App extends Component{
                   What to write
          </button>
 
+
          <button
                   className="navi contact btn btn-primary"
                   onClick={()=>{this.openModal()}}
