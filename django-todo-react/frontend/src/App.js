@@ -38,7 +38,6 @@ class App extends Component{
       viewCompleted: false,
       isModalOpen:false,
       setIsModalOpen:false,
-      closeModal:false,
       todoList: [],
       modal: false,
       how:"",
@@ -218,6 +217,7 @@ class App extends Component{
                 >
                   Contact
          </button>
+
           {this.isModalOpen? <Modal onClick={()=>{this.closeModal()}}/> :""}
       </div>
       <Act/>
