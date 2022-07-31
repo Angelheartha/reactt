@@ -4,7 +4,6 @@ import axios from "axios";
 
 
 function Act(props){
-
   return(
       <div id="modal" className="modall">
         <div>
@@ -14,7 +13,6 @@ function Act(props){
       </div>
      )
 }
-
 
 
 
@@ -253,10 +251,6 @@ openModal(){
    whattodo(){
    this.setState({how:"You can write any recommendations for language studies on the Description. anything is ok"});
    }
-
-
-
-
 
 
 
