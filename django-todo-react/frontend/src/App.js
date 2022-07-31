@@ -3,10 +3,7 @@ import Modal from "./components/Modal";
 import axios from "axios";
 
 
-
-
 function Act(props){
-
 
   return(
       <div id="modal" className="modall">
@@ -17,13 +14,6 @@ function Act(props){
       </div>
      )
 }
-
-
-
-
-
-
-
 
 
 
@@ -58,18 +48,18 @@ class App extends Component{
   }
 
 
-  closeModal(){
+
+
+closeModal(){
 
     this.setIsModalOpen(false);
   }
 
 
-  openModal(){
+openModal(){
 
     this.setIsModalOpen(true);
   }
-
-
 
 
   componentDidMount() {
@@ -217,8 +207,7 @@ class App extends Component{
                 >
                   Contact
          </button>
-
-          {this.isModalOpen? <Modal onClick={()=>{this.closeModal()}}/> :""}
+            {this.isModalOpen? <Modal onClick={()=>{this.closeModal()}}/> :""}
       </div>
       <Act/>
       <p className="howtitle">{this.state.how}</p>
