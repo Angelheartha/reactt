@@ -207,8 +207,9 @@ openModal(){
                 >
                   Contact
          </button>
-            {this.isModalOpen? <Modal onClick={()=>{this.closeModal()}}/> :""}
+            {this.isModalOpen? <Act onClick={()=>{this.closeModal()}}/> :""}
       </div>
+
       <Act/>
       <p className="howtitle">{this.state.how}</p>
       <p className="howtitle">{this.state.what}</p>
