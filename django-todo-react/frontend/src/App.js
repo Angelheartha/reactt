@@ -8,7 +8,7 @@ function Act(props) {
   return (
     <div id="modal" className="modall">
       <div>
-        <form  onSubmit={()=>{this.handleSubmit()}} >
+        <form id="overlay" onSubmit={()=>{this.handleSubmit()}} >
           <p>E-mail</p>
           <input />
           <p>Message</p>
@@ -18,13 +18,12 @@ function Act(props) {
             value='submit'
           />
         </form>
-        <p>message me</p>
+        <p>I am available at this moment!</p>
         <button onClick={props.onClick}>Close</button>
       </div>
     </div>
   )
 }
-
 
 
 class App extends Component {
