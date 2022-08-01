@@ -6,9 +6,10 @@ import axios from "axios";
 
 function Act(props) {
   return (
-    <div id="modal" className="modall">
+     <div id="overlay">
+         <div id="modal" className="modall">
       <div>
-        <form id="overlay" onSubmit={()=>{this.handleSubmit()}} >
+        <form onSubmit={()=>{this.handleSubmit()}} >
           <p>E-mail</p>
           <input />
           <p>Message</p>
@@ -17,11 +18,14 @@ function Act(props) {
             type='submit'
             value='submit'
           />
-        </form>
-        <p>I am available at this moment!</p>
+          <p>I am available at this moment!</p>
         <button onClick={props.onClick}>Close</button>
+        </form>
+
       </div>
     </div>
+     </div>
+
   )
 }
 
