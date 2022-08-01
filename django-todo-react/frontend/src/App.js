@@ -18,7 +18,7 @@ function Act(props) {
             value='submit'
           />
         </form>
-        <p>モーダル</p>
+        <p>message me</p>
         <button onClick={props.onClick}>Close</button>
       </div>
     </div>
