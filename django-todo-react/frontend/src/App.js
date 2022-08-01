@@ -4,13 +4,22 @@ import Modal from "./components/Modal";
 import axios from "axios";
 
 
-
 function Act(props) {
   return (
     <div id="modal" className="modall">
       <div>
+        <form  onSubmit={()=>{this.handleSubmit()}} >
+          <p>E-mail</p>
+          <input />
+          <p>Message</p>
+          <textarea />
+          <input
+            type='submit'
+            value='submit'
+          />
+        </form>
         <p>モーダル</p>
-        <button onClick={props.onClick}>閉じるボタン</button>
+        <button onClick={props.onClick}>Close</button>
       </div>
     </div>
   )
@@ -56,6 +65,8 @@ class App extends Component {
     whattodo() {
     this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
   }
+
+
 
 
 
@@ -256,6 +267,11 @@ class App extends Component {
   openModal() {
     this.setState({isModalOpen: true})
   }
+
+  handleSubmit(){
+    this.setState({isSubmitted:true})
+  }
+
 
 
 
