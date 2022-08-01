@@ -4,6 +4,7 @@ import Modal from "./components/Modal";
 import axios from "axios";
 
 
+
 function Act(props) {
   return (
     <div id="modal" className="modall">
@@ -44,9 +45,17 @@ class App extends Component {
     this.whattodo = this.whattodo.bind(this);
     this.props = {isModalOpen: false};
     this.props = {setIsModalOpen:false};
+
   }
 
 
+
+
+
+
+    whattodo() {
+    this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
+  }
 
 
 
@@ -177,14 +186,14 @@ class App extends Component {
         <div className="nav-container">
           <button
             className="navi white How btn btn-primary"
-            onClick={this.howtodo}
+            onClick={()=>{this.howtodo()}}
           >
             How to use
           </button>
 
           <button
             className="navi What btn btn-primary"
-            onClick={this.whattodo}
+            onClick={()=>{this.whattodo()}}
           >
             What to write
           </button>
@@ -192,7 +201,7 @@ class App extends Component {
 
           <button
             className="navi contact btn btn-primary"
-            onClick={() => { this.openModal() }}
+            onClick={() => { this.openModal()}}
           >
             Contact
           </button>
@@ -238,21 +247,15 @@ class App extends Component {
     this.setState({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
   }
 
-  whattodo() {
-    this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
-  }
-
 
   closeModal() {
-
-    this.setState({isModalOpen: false});
+    this.setState({isModalOpen: false})
   }
 
 
   openModal() {
-    this.setState({isModalOpen: true});
+    this.setState({isModalOpen: true})
   }
-
 
 
 
