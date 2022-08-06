@@ -9,7 +9,7 @@ function Act(props) {
      <div id="overlay">
          <div id="modal" className="modall">
       <div>
-        <form onSubmit={()=>{this.handleSubmit()}} >
+        <form onSubmit={()=>{this.handleSubmitt()}} >
           <p>E-mail</p>
           <input />
           <p>Message</p>
@@ -188,7 +188,7 @@ const App = () => {
     this.setState({isModalOpen: true})
   }
 
-  const handleSubmit = () => {
+  const handleSubmitt = () => {
     sent({isSubmitted:true})
   }
 
