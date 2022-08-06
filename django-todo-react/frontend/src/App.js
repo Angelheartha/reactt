@@ -42,6 +42,7 @@ const App = () => {
   const[hasEmailError]=useState(false);
   const[content]=useState("お問い合わせ内容");
   const[hasContactError]=useState(false);
+  const[isModalOpen]=useState(false);
 
 
 
