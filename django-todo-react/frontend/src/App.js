@@ -188,7 +188,7 @@ const App = () => {
     this.setState({isModalOpen: true})
   }
 
-  handleSubmit = () => {
+  const handleSubmit = () => {
     sent({isSubmitted:true})
   }
 
