@@ -168,6 +168,32 @@ const App = () => {
 
 
 
+
+  const whattodo = () => {
+    this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
+  }
+
+
+  const howtodo = () => {
+    this.setState({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
+  }
+
+
+  const closeModal = () => {
+    this.setState({isModalOpen: false})
+  }
+
+
+  const openModal = () => {
+    this.setState({isModalOpen: true})
+  }
+
+  handleSubmit = () => {
+    sent({isSubmitted:true})
+  }
+
+
+
     return (
       <main className="container">
         <div className="nav-container">
@@ -230,29 +256,6 @@ const App = () => {
       </main>
     )
 
-
-  const whattodo = () => {
-    this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
-  }
-
-
-  const howtodo = () => {
-    this.setState({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
-  }
-
-
-  const closeModal = () => {
-    this.setState({isModalOpen: false})
-  }
-
-
-  const openModal = () => {
-    this.setState({isModalOpen: true})
-  }
-
-  handleSubmit = () => {
-    sent({isSubmitted:true})
-  }
 
 
 
