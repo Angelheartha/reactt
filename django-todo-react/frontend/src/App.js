@@ -30,119 +30,91 @@ function Act(props) {
 }
 
 
-class App extends Component {
-  ///const[isModalOpen,setIsModalOpen]=useState(false)
-
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      viewCompleted: false,
-      todoList: [],
-      modal: false,
-      how: "",
-      what: "",
-      activeItem: {
-        title: "",
-        description: "",
-        completed: false,
-      },
-      isSubmitted: false,
-      email: "sample@gmail.com",
-      hasEmailError: false,
-      content: "お問い合わせ内容",
-      hasContactError: false,
-    };
-    this.howtodo = this.howtodo.bind(this);
-    this.whattodo = this.whattodo.bind(this);
-    this.props = {isModalOpen: false};
-    this.props = {setIsModalOpen:false};
-
-  }
+const App = () => {
+  const[viewCompleted,zone]=useState(false);
+  const[todoList,listlist]=useState([]);
+  const[modal,model]=useState(false);
+  const[how]=useState("");
+  const[what]=useState("");
+  const[activeItem,action]=useState([{title: "",description: "",completed: false}]);
+  const[isSubmitted,sent]=useState(false);
+  const[email]=useState("sample@gmail.com");
+  const[hasEmailError]=useState(false);
+  const[content]=useState("お問い合わせ内容");
+  const[hasContactError]=useState(false);
 
 
 
 
-
-
-    whattodo() {
-    this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
-  }
-
-
-
-
-
-
-
-  componentDidMount() {
-    this.refreshList();
-  }
-
-  refreshList = () => {
+  const refreshList = () => {
     axios
       .get("http://localhost:8000/api/todos/")
-      .then((res) => this.setState({ todoList: res.data }))
+      .then((res) => listlist({ todoList: res.data }))
       .catch((err) => console.log(err));
   };
 
-  toggle = () => {
-    this.setState({ modal: !this.state.modal });
+
+  const componentDidMount = () => {
+    refreshList();
+  }
+
+  const toggle = () => {
+    model({ modal: !model(modal) });
   };
 
-  handleSubmit = (item) => {
-    this.toggle();
+  const handleSubmit = (item) => {
+    toggle();
 
     if (item.id) {
       axios
         .put(`http://localhost:8000/api/todos/${item.id}/`, item)
-        .then((res) => this.refreshList());
+        .then((res) => refreshList());
       return;
     }
     axios
       .post("http://localhost:8000/api/todos/", item)
-      .then((res) => this.refreshList());
+      .then((res) => refreshList());
   };
 
-  handleDelete = (item) => {
+  const handleDelete = (item) => {
     axios
       .delete(`http://localhost:8000/api/todos/${item.id}/`)
-      .then((res) => this.refreshList());
+      .then((res) => refreshList());
   };
 
-  createItem = () => {
+  const createItem = () => {
     const item = { title: "", description: "", completed: false };
 
-    this.setState({ activeItem: item, modal: !this.state.modal });
+    action({ activeItem: item, modal: !model(modal) });
   };
 
-  editItem = (item) => {
-    this.setState({ activeItem: item, modal: !this.state.modal });
+  const editItem = (item) => {
+    action({ activeItem: item, modal: !model(modal) });
   };
 
-  displayCompleted = (status) => {
+  const displayCompleted = (status) => {
     if (status) {
-      return this.setState({ viewCompleted: true });
+      return zone({ viewCompleted: true });
     }
 
-    return this.setState({ viewCompleted: false });
+    return zone({ viewCompleted: false });
   };
 
 
 
 
-  renderTabList = () => {
+  const renderTabList = () => {
     return (
       <div className="nav nav-tabs">
         <span
-          onClick={() => this.displayCompleted(true)}
-          className={this.state.viewCompleted ? "nav-link active" : "nav-link"}
+          onClick={() => displayCompleted(true)}
+          className={zone(viewCompleted) ? "nav-link active" : "nav-link"}
         >
           Complete
         </span>
         <span
-          onClick={() => this.displayCompleted(false)}
-          className={this.state.viewCompleted ? "nav-link" : "nav-link active"}
+          onClick={() => displayCompleted(false)}
+          className={zone(viewCompleted) ? "nav-link" : "nav-link active"}
         >
           Incomplete
         </span>
@@ -150,9 +122,9 @@ class App extends Component {
     );
   };
 
-  renderItems = () => {
-    const { viewCompleted } = this.state;
-    const newItems = this.state.todoList.filter(
+  const renderItems = () => {
+    const { viewCompleted } = zone;
+    const newItems = listlist(todoList).filter(
       (item) => item.completed === viewCompleted
     );
 
@@ -169,7 +141,7 @@ class App extends Component {
         className="list-group-item d-flex justify-content-between align-items-center"
       >
         <span
-          className={`todo-title mr-2 ${this.state.viewCompleted ? "completed-todo" : ""
+          className={`todo-title mr-2 ${zone(viewCompleted) ? "completed-todo" : ""
             }`}
           title={item.description}
         >
@@ -178,13 +150,13 @@ class App extends Component {
         <span>
           <button
             className="btn btn-secondary mr-2"
-            onClick={() => this.editItem(item)}
+            onClick={() => editItem(item)}
           >
             Edit
           </button>
           <button
             className="btn btn-danger"
-            onClick={() => this.handleDelete(item)}
+            onClick={() => handleDelete(item)}
           >
             Delete
           </button>
@@ -194,20 +166,20 @@ class App extends Component {
   };
 
 
-  render() {
+
     return (
       <main className="container">
         <div className="nav-container">
           <button
             className="navi white How btn btn-primary"
-            onClick={()=>{this.howtodo()}}
+            onClick={()=>{howtodo()}}
           >
             How to use
           </button>
 
           <button
             className="navi What btn btn-primary"
-            onClick={()=>{this.whattodo()}}
+            onClick={()=>{whattodo()}}
           >
             What to write
           </button>
@@ -215,15 +187,15 @@ class App extends Component {
 
           <button
             className="navi contact btn btn-primary"
-            onClick={() => { this.openModal()}}
+            onClick={() => {openModal()}}
           >
             Contact
           </button>
         </div>
 
-        {this.state.isModalOpen ? <Act onClick={() => { this.closeModal()}} /> : ""}
-        <p className="howtitle">{this.state.how}</p>
-        <p className="howtitle">{this.state.what}</p>
+        {this.state.isModalOpen ? <Act onClick={() => {closeModal()}} /> : ""}
+        <p className="howtitle">{how}</p>
+        <p className="howtitle">{what}</p>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
@@ -231,23 +203,23 @@ class App extends Component {
               <div className="mb-4">
                 <button
                   className="btn btn-primary"
-                  onClick={this.createItem}
+                  onClick={createItem}
                 >
                   Add
                 </button>
               </div>
-              {this.renderTabList()}
+              {renderTabList()}
               <ul className="list-group list-group-flush border-top-0">
-                {this.renderItems()}
+                {renderItems()}
               </ul>
             </div>
           </div>
         </div>
-        {this.state.modal ? (
+        {model(modal) ? (
           <Modal
-            activeItem={this.state.activeItem}
-            toggle={this.toggle}
-            onSave={this.handleSubmit}
+            activeItem={action(activeItem)}
+            toggle={toggle}
+            onSave={handleSubmit}
           />
         ) : null}
 
@@ -255,24 +227,30 @@ class App extends Component {
 
 
       </main>
-    );
+    )
+
+
+  const whattodo = () => {
+    this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
   }
-  howtodo() {
+
+
+  const howtodo = () => {
     this.setState({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
   }
 
 
-  closeModal() {
+  const closeModal = () => {
     this.setState({isModalOpen: false})
   }
 
 
-  openModal() {
+  const openModal = () => {
     this.setState({isModalOpen: true})
   }
 
-  handleSubmit(){
-    this.setState({isSubmitted:true})
+  handleSubmit = () => {
+    sent({isSubmitted:true})
   }
 
 
@@ -282,3 +260,4 @@ class App extends Component {
 
 
 export default App;
+
