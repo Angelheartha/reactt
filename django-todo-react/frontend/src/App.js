@@ -9,7 +9,7 @@ function Act(props) {
      <div id="overlay">
          <div id="modal" className="modall">
       <div>
-        <form onSubmit={()=>{this.handleSubmitt()}} >
+        <form onSubmit={()=>{props.handleSubmitt()}} >
           <p>E-mail</p>
           <input />
           <p>Message</p>
@@ -34,15 +34,15 @@ const App = () => {
   const[viewCompleted,zone]=useState(false);
   const[todoList,listlist]=useState([]);
   const[modal,model]=useState(false);
-  const[how]=useState("");
-  const[what]=useState("");
+  const[how,howw]=useState("");
+  const[what,whatt]=useState("");
   const[activeItem,action]=useState([{title: "",description: "",completed: false}]);
   const[isSubmitted,sent]=useState(false);
   const[email]=useState("sample@gmail.com");
   const[hasEmailError]=useState(false);
   const[content]=useState("お問い合わせ内容");
   const[hasContactError]=useState(false);
-  const[isModalOpen]=useState(false);
+  const[isModalOpen,ModalOpen]=useState(false);
 
 
 
@@ -55,42 +55,41 @@ const App = () => {
   };
 
 
-  const componentDidMount = () => {
-    refreshList();
+  const componentDidMount = (props) => {
+    props.refreshList();
   }
 
   const toggle = () => {
-    model({ modal: !model(modal) });
+    model({ modal: !modal });
   };
 
-  const handleSubmit = (item) => {
-    toggle();
+  const handleSubmit = (item,props) => {
+    props.toggle();
 
     if (item.id) {
       axios
         .put(`http://localhost:8000/api/todos/${item.id}/`, item)
-        .then((res) => refreshList());
+        .then((res) => props.refreshList());
       return;
     }
     axios
       .post("http://localhost:8000/api/todos/", item)
-      .then((res) => refreshList());
+      .then((res) => props.refreshList());
   };
 
-  const handleDelete = (item) => {
+  const handleDelete = (item,props) => {
     axios
       .delete(`http://localhost:8000/api/todos/${item.id}/`)
-      .then((res) => refreshList());
+      .then((res) => props.refreshList());
   };
 
   const createItem = () => {
     const item = { title: "", description: "", completed: false };
-
-    action({ activeItem: item, modal: !model(modal) });
+    action({ activeItem: item, modal: !modal });
   };
 
   const editItem = (item) => {
-    action({ activeItem: item, modal: !model(modal) });
+    action({ activeItem: item, modal: !modal });
   };
 
   const displayCompleted = (status) => {
@@ -104,12 +103,12 @@ const App = () => {
 
 
 
-  const renderTabList = () => {
+  const renderTabList = (props) => {
     return (
       <div className="nav nav-tabs">
         <span
-          onClick={() => displayCompleted(true)}
-          className={zone(viewCompleted) ? "nav-link active" : "nav-link"}
+          onClick={() => props.displayCompleted(true)}
+          className={viewCompleted ? "nav-link active" : "nav-link"}
         >
           Complete
         </span>
@@ -124,8 +123,8 @@ const App = () => {
   };
 
   const renderItems = () => {
-    const { viewCompleted } = zone;
-    const newItems = listlist(todoList).filter(
+    const { viewCompleted } =this.state;
+    const newItems = todoList.filter(
       (item) => item.completed === viewCompleted
     );
 
@@ -136,13 +135,13 @@ const App = () => {
 
 
 
-    return newItems.map((item) => (
+    return newItems.map((item,props) => (
       <li
         key={item.id}
         className="list-group-item d-flex justify-content-between align-items-center"
       >
         <span
-          className={`todo-title mr-2 ${zone(viewCompleted) ? "completed-todo" : ""
+          className={`todo-title mr-2 ${viewCompleted? "completed-todo" : ""
             }`}
           title={item.description}
         >
@@ -151,13 +150,13 @@ const App = () => {
         <span>
           <button
             className="btn btn-secondary mr-2"
-            onClick={() => editItem(item)}
+            onClick={() => props.editItem(item)}
           >
             Edit
           </button>
           <button
             className="btn btn-danger"
-            onClick={() => handleDelete(item)}
+            onClick={() => props.handleDelete(item)}
           >
             Delete
           </button>
@@ -170,22 +169,22 @@ const App = () => {
 
 
   const whattodo = () => {
-    this.setState({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
+    whatt({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
   }
 
 
   const howtodo = () => {
-    this.setState({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
+    howw({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
   }
 
 
   const closeModal = () => {
-    this.setState({isModalOpen: false})
+    ModalOpen({isModalOpen: false})
   }
 
 
   const openModal = () => {
-    this.setState({isModalOpen: true})
+    ModalOpen({isModalOpen: true})
   }
 
   const handleSubmitt = () => {
@@ -220,7 +219,7 @@ const App = () => {
           </button>
         </div>
 
-        {this.state.isModalOpen ? <Act onClick={() => {closeModal()}} /> : ""}
+        {isModalOpen ? <Act onClick={() => {closeModal()}} /> : ""}
         <p className="howtitle">{how}</p>
         <p className="howtitle">{what}</p>
         <h1 className="text-uppercase text-center my-4">Todo app</h1>
