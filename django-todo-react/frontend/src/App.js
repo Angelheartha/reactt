@@ -122,8 +122,8 @@ const App = () => {
     );
   };
 
-  const renderItems = () => {
-    const { viewCompleted } =this.state;
+  const renderItems = (props) => {
+    //const {viewCompleted} = this.state;
     const newItems = todoList.filter(
       (item) => item.completed === viewCompleted
     );
