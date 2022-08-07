@@ -30,8 +30,8 @@ const App = () => {
   const [viewCompleted, setViewCompleted] = useState(false);
   const [todoList, setTodoList] = useState([]);
   const [modal, setModal] = useState(false);
-  const [how, setHow] = useState("");
-  const [what, setWhat] = useState("");
+  const [how, setHow] = useState('');
+  const [what, setWhat] = useState('');
   const [activeItem, setActiveItem] = useState({title: "", description: "", completed: false });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
