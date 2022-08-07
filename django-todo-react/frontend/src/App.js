@@ -3,6 +3,8 @@ import Modal from "./components/Modal";
 import axios from "axios";
 import {useAlert} from "react";
 
+
+
 const Act = (props) => {
 
 
@@ -27,6 +29,7 @@ const Act = (props) => {
     </div>
   )
 }
+
 
 
 const App = () => {
