@@ -63,7 +63,7 @@ const App = () => {
      }
      axios
        .post("http://localhost:8000/api/todos/", item)
-       .then(() => props.refreshList());
+       .then(() => refreshList());
   };
 
    const handleDelete = (item,props) => {
@@ -114,7 +114,7 @@ const App = () => {
 
   const renderItems = (props) => {
 
-     const newItems = todoList.filter(
+  const newItems = todoList.filter(
        (item) => item.completed === viewCompleted
      );
 
@@ -217,7 +217,7 @@ const App = () => {
       </div>
       {modal && (
         <Modal
-          activeItem={setActiveItem(activeItem)}
+          activeItem={activeItem}
           toggle={toggle}
           onSave={handleSubmit}
         />
