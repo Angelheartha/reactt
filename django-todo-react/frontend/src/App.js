@@ -30,8 +30,8 @@ const App = () => {
   const [viewCompleted, setViewCompleted] = useState(false);
   const [todoList, setTodoList] = useState([]);
   const [modal, setModal] = useState(false);
-  const [how, setHow] = useState('');
-  const [what, setWhat] = useState('');
+  const [how, setHow] = useState("");
+  const [what, setWhat] = useState("");
   const [activeItem, setActiveItem] = useState({title: "", description: "", completed: false });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -172,14 +172,14 @@ const App = () => {
       <div className="nav-container">
         <button
           className="navi white How btn btn-primary"
-          onClick={() => { howtodo() }}
+          onClick={howtodo}
         >
           How to use
         </button>
 
         <button
           className="navi What btn btn-primary"
-          onClick={() => { whattodo() }}
+          onClick={whattodo}
         >
           What to write
         </button>
