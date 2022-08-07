@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
+import {useAlert} from "react";
 
 const Act = (props) => {
+
 
   return (
     <div id="overlay">
       <div id="modal" className="modall">
         <div>
-          <form onSubmit={() => { props.handleSubmitt() }} >
+          <form onSubmit={() => { props.handleSubmit() }} >
             <p>E-mail</p>
             <input />
             <p>Message</p>
@@ -26,6 +28,7 @@ const Act = (props) => {
   )
 }
 
+
 const App = () => {
   const [viewCompleted, setViewCompleted] = useState(false);
   const [todoList, setTodoList] = useState([]);
@@ -34,6 +37,8 @@ const App = () => {
   const [what, setWhat] = useState("");
   const [activeItem, setActiveItem] = useState({title: "", description: "", completed: false });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [description,setDescription] = useState("");
+
 
 
   const componentDidMount = (props) => {
@@ -51,6 +56,8 @@ const App = () => {
   const toggle = () => {
     setModal(!modal);
   };
+
+
 
   const handleSubmit = (item, props) => {
     setModal(!modal);
@@ -149,12 +156,12 @@ const App = () => {
   };
 
   const whattodo = () => {
-    setWhat("You can write any recommendations for language studies on the Description. anything is ok");
+      setDescription("You can write any recommendations for language studies on the Description. anything is ok");
   }
 
 
   const howtodo = () => {
-    setHow("You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster");
+    setDescription("You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster");
   }
 
 
@@ -166,6 +173,7 @@ const App = () => {
   const openModal = () => {
     setIsModalOpen(true)
   }
+
 
   return (
     <main className="container">
@@ -194,8 +202,7 @@ const App = () => {
       </div>
 
       {isModalOpen && <Act onClick={() => { closeModal() }} />}
-      <p className="howtitle">{how}</p>
-      <p className="howtitle">{what}</p>
+      <p className="howtitle">{description}</p>
       <h1 className="text-uppercase text-center my-4">Todo app</h1>
       <div className="row">
         <div className="col-md-6 col-sm-10 mx-auto p-0">
