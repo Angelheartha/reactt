@@ -31,18 +31,18 @@ function Act(props) {
 
 
 const App = () => {
-  const[viewCompleted,zone]=useState(false);
-  const[todoList,listlist]=useState([]);
-  const[modal,model]=useState(false);
-  const[how,howw]=useState("");
-  const[what,whatt]=useState("");
-  const[activeItem,action]=useState([{title: "",description: "",completed: false}]);
-  const[isSubmitted,sent]=useState(false);
+  const[viewCompleted,setViewCompleted]=useState(false);
+  const[todoList,setTodoList]=useState([]);
+  const[modal,setModal]=useState(false);
+  const[how,setHow]=useState("");
+  const[what,setWhat]=useState("");
+  const[activeItem,setActiveItem]=useState([{title: "",description: "",completed: false}]);
+  const[isSubmitted,setIsSubmitted]=useState(false);
   const[email]=useState("sample@gmail.com");
   const[hasEmailError]=useState(false);
   const[content]=useState("お問い合わせ内容");
   const[hasContactError]=useState(false);
-  const[isModalOpen,ModalOpen]=useState(false);
+  const[isModalOpen,setIsModalOpen]=useState(false);
 
 
 
@@ -50,7 +50,7 @@ const App = () => {
   const refreshList = () => {
     axios
       .get("http://localhost:8000/api/todos/")
-      .then((res) => listlist({ todoList: res.data }))
+      .then((res) => setTodoList({ todoList: res.data }))
       .catch((err) => console.log(err));
   };
 
@@ -60,7 +60,7 @@ const App = () => {
   }
 
   const toggle = () => {
-    model({ modal: !modal });
+    setModal({ modal: !modal });
   };
 
   const handleSubmit = (item,props) => {
@@ -85,19 +85,19 @@ const App = () => {
 
   const createItem = () => {
     const item = { title: "", description: "", completed: false };
-    action({ activeItem: item, modal: !modal });
+    setActiveItem({ activeItem: item, modal: !modal });
   };
 
   const editItem = (item) => {
-    action({ activeItem: item, modal: !modal });
+    setActiveItem({ activeItem: item, modal: !modal });
   };
 
   const displayCompleted = (status) => {
     if (status) {
-      return zone({ viewCompleted: true });
+      return setViewCompleted({ viewCompleted: true });
     }
 
-    return zone({ viewCompleted: false });
+    return setViewCompleted({ viewCompleted: false });
   };
 
 
@@ -114,7 +114,7 @@ const App = () => {
         </span>
         <span
           onClick={() => displayCompleted(false)}
-          className={zone(viewCompleted) ? "nav-link" : "nav-link active"}
+          className={setViewCompleted(viewCompleted) ? "nav-link" : "nav-link active"}
         >
           Incomplete
         </span>
@@ -169,26 +169,26 @@ const App = () => {
 
 
   const whattodo = () => {
-    whatt({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
+    setWhat({ how: "You can write any recommendations for language studies on the Description. anything is ok" });
   }
 
 
   const howtodo = () => {
-    howw({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
+    setHow({ how: "You should write the day and to whom you write on the Title.⇒(ex).title:7/7 for Hamuster" });
   }
 
 
   const closeModal = () => {
-    ModalOpen({isModalOpen: false})
+    setIsModalOpen({isModalOpen: false})
   }
 
 
   const openModal = () => {
-    ModalOpen({isModalOpen: true})
+    setIsModalOpen({isModalOpen: true})
   }
 
   const handleSubmitt = () => {
-    sent({isSubmitted:true})
+    setIsSubmitted({isSubmitted:true})
   }
 
 
@@ -241,9 +241,9 @@ const App = () => {
             </div>
           </div>
         </div>
-        {model(modal) ? (
+        {setModal(modal) ? (
           <Modal
-            activeItem={action(activeItem)}
+            activeItem={setActiveItem(activeItem)}
             toggle={toggle}
             onSave={handleSubmit}
           />
