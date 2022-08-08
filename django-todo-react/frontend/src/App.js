@@ -15,6 +15,9 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [description,setDescription] = useState("");
   const alert = useAlert()
+  const [input, setInput]=useState("");
+  const [textarea, setTextarea]=useState("");
+
 
 
   const componentDidMount = (props) => {
@@ -59,7 +62,8 @@ const Act = (props) => {
 
   const aalert = () => {
   alert.show('your message is already sent!! i reply in 5 days bussine daysss');
-
+  setInput([]);
+  setTextarea([]);
   };
 
 

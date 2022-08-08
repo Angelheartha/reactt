@@ -15,8 +15,8 @@ const root = createRoot(container);
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
-  timeout: 5000,
-  offset: '30px',
+  timeout: 1500,
+  offset: '200px',
   // you can also just use 'scale'
   transition: transitions.SCALE
 }
