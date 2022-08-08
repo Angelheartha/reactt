@@ -1,35 +1,46 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
-import {useAlert} from "react";
-
-
+import { useAlert } from 'react-alert'
 
 const Act = (props) => {
 
+const alert = useAlert()
+
 
   return (
-    <div id="overlay">
-      <div id="modal" className="modall">
-        <div>
-          <form onSubmit={() => { props.handleSubmit() }} >
-            <p>E-mail</p>
-            <input />
-            <p>Message</p>
-            <textarea />
-            <input
-              type='submit'
-              value='submit'
-            />
-            <p>I am available at this moment!</p>
-            <button onClick={props.onClick}>Close</button>
-          </form>
-        </div>
+     <div id="overlay">
+         <div id="modal" className="modall">
+      <div>
+        <form onSubmit={()=>{this.handleSubmit()}} >
+          <p>E-mail</p>
+          <input />
+          <p>Message</p>
+          <textarea />
+          <input
+            type='submit'
+            value='submit'
+          />
+          <p>I am available at this moment!</p>
+        <button onClick={props.onClick}>Close</button>
+        <button
+      onClick={() => {
+        alert.show('Oh look, an alert!')
+      }}
+    >
+      Show Alert
+    </button>
+
+
+
+        </form>
+
       </div>
     </div>
+     </div>
+
   )
 }
-
 
 
 const App = () => {
