@@ -7,7 +7,6 @@ const Act = (props) => {
 
 const alert = useAlert()
 
-
   return (
      <div id="overlay">
          <div id="modal" className="modall">
@@ -23,15 +22,9 @@ const alert = useAlert()
           />
           <p>I am available at this moment!</p>
         <button onClick={props.onClick}>Close</button>
-        <button
-      onClick={() => {
-        alert.show('Oh look, an alert!')
-      }}
-    >
+        <button onClick={() => {alert.show('Oh look, you done well an alert!')}}>
       Show Alert
     </button>
-
-
 
         </form>
 
@@ -41,6 +34,7 @@ const alert = useAlert()
 
   )
 }
+
 
 
 const App = () => {
