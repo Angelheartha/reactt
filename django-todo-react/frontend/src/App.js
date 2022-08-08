@@ -3,9 +3,35 @@ import Modal from "./components/Modal";
 import axios from "axios";
 import { useAlert } from 'react-alert'
 
-const Act = (props) => {
 
-const alert = useAlert()
+
+const App = () => {
+  const [viewCompleted, setViewCompleted] = useState(false);
+  const [todoList, setTodoList] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [how, setHow] = useState("");
+  const [what, setWhat] = useState("");
+  const [activeItem, setActiveItem] = useState({title: "", description: "", completed: false });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [description,setDescription] = useState("");
+  const alert = useAlert()
+
+
+  const componentDidMount = (props) => {
+    props.refreshList();
+  };
+
+  const refreshList = (props) => {
+    axios
+      .get("http://localhost:8000/api/todos/")
+      .then((res) => setTodoList({ todoList: res.data }))
+      .catch((err) => console.log(err));
+  };
+
+
+
+const Act = (props) => {
+ const alert = useAlert()
 
   return (
      <div id="overlay">
@@ -37,28 +63,6 @@ const alert = useAlert()
 
 
 
-const App = () => {
-  const [viewCompleted, setViewCompleted] = useState(false);
-  const [todoList, setTodoList] = useState([]);
-  const [modal, setModal] = useState(false);
-  const [how, setHow] = useState("");
-  const [what, setWhat] = useState("");
-  const [activeItem, setActiveItem] = useState({title: "", description: "", completed: false });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [description,setDescription] = useState("");
-
-
-
-  const componentDidMount = (props) => {
-    props.refreshList();
-  };
-
-  const refreshList = (props) => {
-    axios
-      .get("http://localhost:8000/api/todos/")
-      .then((res) => setTodoList({ todoList: res.data }))
-      .catch((err) => console.log(err));
-  };
 
 
   const toggle = () => {
@@ -186,6 +190,8 @@ const App = () => {
   return (
     <main className="container">
       <div className="nav-container">
+
+
         <button
           className="navi white How btn btn-primary"
           onClick={howtodo}
