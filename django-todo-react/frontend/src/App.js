@@ -111,7 +111,7 @@ const Act = (props) => {
       return setViewCompleted({ viewCompleted: true });
     }
 
-    return setViewCompleted({ viewCompleted: false });
+      return setViewCompleted({ viewCompleted: false });
   };
 
 
