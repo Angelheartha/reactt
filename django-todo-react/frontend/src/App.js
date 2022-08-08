@@ -42,15 +42,11 @@ const Act = (props) => {
           <input />
           <p>Message</p>
           <textarea />
-          <input
-            type='submit'
-            value='submit'
-          />
           <p>I am available at this moment!</p>
         <button onClick={props.onClick}>Close</button>
-        <button onClick={() => {alert.show('Oh look, you done well an alert!')}}>
-      Show Alert
-    </button>
+        <button type="button" onClick={aalert}>
+        Submit
+        </button>
 
         </form>
 
@@ -61,7 +57,10 @@ const Act = (props) => {
   )
 }
 
+  const aalert = () => {
+  alert.show('your message is already sent!! i reply in 5 days bussine daysss');
 
+  };
 
 
 
