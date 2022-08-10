@@ -61,7 +61,7 @@ const Act = (props) => {
 }
 
   const aalert = () => {
-  alert.show('your message is already sent!! i reply in 5 days bussine daysss');
+  alert.success('your message is already sent!! i reply in 5 days bussine daysss');
   setInput([]);
   setTextarea([]);
   };
@@ -87,7 +87,7 @@ const Act = (props) => {
        .post("http://localhost:8000/api/todos/", item)
        .then(() => refreshList());
 
-     alert.show('Well done!!!');
+     alert.success('Well done!!!');
 
   };
 
@@ -95,7 +95,7 @@ const Act = (props) => {
     axios
       .delete(`http://localhost:8000/api/todos/${item.id}/`)
       .then((res) => refreshList());
-    alert.show('Bye-Bye');
+    alert.success('Bye-Bye');
   };
 
 
@@ -114,11 +114,11 @@ const Act = (props) => {
  const displayCompleted = (status) => {
     if (status) {
       return setViewCompleted(true);
-    }
-
+    }else{
       return setViewCompleted(false);
 
-  }
+  };
+  };
 
 
 
