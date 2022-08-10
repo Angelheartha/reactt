@@ -21,7 +21,7 @@ const App = () => {
 
 
   const componentDidMount = (props) => {
-    props.refreshList();
+    refreshList();
   };
 
   const refreshList = (props) => {
@@ -80,7 +80,7 @@ const Act = (props) => {
         if (item.id) {
        axios
          .put(`http://localhost:8000/api/todos/${item.id}/`, item)
-         .then(() => props.refreshList());
+         .then(() => refreshList());
        return;
      }
      axios
@@ -97,37 +97,38 @@ const Act = (props) => {
 
   const createItem = (props) => {
     const item = { title: "", description: "", completed: false };
-    setActiveItem(activeItem, item);
+    setActiveItem(item);
     setModal(!modal);
   };
 
-  const editItem = (props,item) => {
-    setActiveItem(activeItem, item);
+  const editItem = (item,props) => {
+    setActiveItem(item);
     setModal(!modal);
   };
 
 
- const displayCompleted = (status,props) => {
+ const displayCompleted = (status) => {
     if (status) {
-      return setViewCompleted({viewCompleted: true });
+      return setViewCompleted(true);
     }
 
-      return setViewCompleted({viewCompleted: false });
-  };
+      return setViewCompleted(false);
+
+  }
 
 
 
-  const renderTabList = () => {
+  const renderTabList = (props) => {
     return (
       <div className="nav nav-tabs">
         <span
-          onClick={() => setViewCompleted(true )}
+          onClick={() => displayCompleted(true)}
           className={viewCompleted ? "nav-link active" : "nav-link"}
         >
           Complete
         </span>
         <span
-          onClick={() => setViewCompleted(false) }
+          onClick={() => displayCompleted(false) }
           className={viewCompleted ? "nav-link" : "nav-link active"}
         >
           Incomplete
