@@ -86,12 +86,16 @@ const Act = (props) => {
      axios
        .post("http://localhost:8000/api/todos/", item)
        .then(() => refreshList());
+
+     alert.show('Well done!!!');
+
   };
 
    const handleDelete = (item,props) => {
     axios
       .delete(`http://localhost:8000/api/todos/${item.id}/`)
       .then((res) => refreshList());
+    alert.show('Bye-Bye');
   };
 
 
