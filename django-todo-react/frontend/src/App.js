@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState,useEffect} from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 import { useAlert } from 'react-alert'
@@ -17,6 +17,11 @@ const App = () => {
   const alert = useAlert()
   const [input, setInput]=useState("");
   const [textarea, setTextarea]=useState("");
+
+  useEffect(() =>{
+  refreshList();
+  },[])
+
 
 
 
