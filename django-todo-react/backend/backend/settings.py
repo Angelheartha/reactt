@@ -130,6 +130,8 @@ CORS_ORIGIN_WHITELIST = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.authentication.TokenAuthentication',
+
 
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -138,16 +140,13 @@ REST_FRAMEWORK = {
       'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 
-     'DEFAULT_CONTENT_NEGOTIATION_CLASS':(
-       'rest_framework.negotiation.DefaultContentNegotiation',
-     ),
-
 
 }
+
 
 WHITENOISE_AUTOREFRESH = True
 
 
-JWT_AUTH = {
+JWT_AUTH =  {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'mysite.utils.my_jwt_response_handler'
 }
