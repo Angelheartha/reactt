@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-hfad7^s(!=@^3nmba%qxne)h6gpj-9r0pcz!brwf)1)3nsy_3k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -26,10 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'todo',
+    'core.apps.CoreConfig',
     'rest_framework',
     'corsheaders',
-    'todo',
-    'core.apps.CoreConfig'
+    'rest_framework_simplejwt',
+
 ]
 
 MIDDLEWARE = [
@@ -128,15 +130,8 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.authentication.TokenAuthentication',
 
-
-    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-      'rest_framework.authentication.SessionAuthentication',
-      'rest_framework.authentication.BasicAuthentication',
       'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 
@@ -148,5 +143,5 @@ WHITENOISE_AUTOREFRESH = True
 
 
 JWT_AUTH =  {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'mysite.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler'
 }
